@@ -1,31 +1,28 @@
 package fr.emn.eventmanager.bean;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class Event {
 
 	private String id;
 	private String name;
-	private Location address;
+	private String location;
 	private Date startDate;
 	private Date endDate;
-	
-	public Event() {
-		super();
-		//TODO:MB: auto generation of id
-		this.id = "";
-	}
 
-	public Event(String name, Location address, Date startDate, Date endDate) {
-		super();
-		//TODO:MB: auto generation of id
-		this.id = "";
+	public Event(String name, String location, Date startDate, Date endDate) {
+		id = UUID.randomUUID().toString().replace("-", "");
 		this.name = name;
-		this.address = address;
+		this.location = location;
 		this.startDate = startDate;
 		this.endDate = endDate;
 	}
-	
+
+	public String getID() {
+		return id;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -34,12 +31,12 @@ public class Event {
 		this.name = name;
 	}
 
-	public Location getAddress() {
-		return address;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setAddress(Location address) {
-		this.address = address;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public Date getStartDate() {
@@ -57,4 +54,5 @@ public class Event {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
 }
