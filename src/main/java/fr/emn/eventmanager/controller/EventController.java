@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/event/*")
 public class EventController extends HttpServlet {
 	
+	/**
+	 * Generated UID
+	 */
+	private static final long serialVersionUID = -7936932674425902669L;
+
 	public EventController() {
         super();
     }
