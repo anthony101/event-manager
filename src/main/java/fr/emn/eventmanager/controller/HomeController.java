@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import fr.emn.eventmanager.bean.Customer;
 import fr.emn.eventmanager.bean.Event;
 
-@WebServlet("/")
+//@WebServlet("/")
 public class HomeController extends HttpServlet {
 	
 	public HomeController() {
@@ -22,6 +22,7 @@ public class HomeController extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
 		HttpSession session = request.getSession();
 		Customer customer = (Customer) session.getAttribute("customer");
 		if (customer != null) {
@@ -48,6 +49,7 @@ public class HomeController extends HttpServlet {
 			//this.getServletContext().getRequestDispatcher("/subscribe.html").forward(request, response);
 			response.sendRedirect("subscribe.html");
 		}
+		*/
 	}
 	
 }
