@@ -1,3 +1,7 @@
+      <div class="footer">
+        <p> Copyright &copy; 2014</p>
+      </div>
+
 </div> <!-- /container -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

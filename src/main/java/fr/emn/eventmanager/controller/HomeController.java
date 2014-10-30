@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import fr.emn.eventmanager.bean.Customer;
 import fr.emn.eventmanager.bean.Event;
 
-//@WebServlet("/")
+@WebServlet("/home")
 public class HomeController extends HttpServlet {
 	
 	public HomeController() {
@@ -50,6 +52,15 @@ public class HomeController extends HttpServlet {
 			response.sendRedirect("subscribe.html");
 		}
 		*/
+		
+		String route = request.getPathInfo();
+		
+			System.out.println("HomeController.doGet(): routing...");
+			ServletContext context = getServletContext();
+			RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/HomeView.jsp");
+			rd.forward(request, response);
+		 
+		
 	}
 	
 }
