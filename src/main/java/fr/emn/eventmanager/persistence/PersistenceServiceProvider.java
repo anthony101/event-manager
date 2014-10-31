@@ -11,7 +11,7 @@ package fr.emn.eventmanager.persistence;
  */
 public class PersistenceServiceProvider {
 
-	private final static String SERVICES_ROOT_PACKAGE = PersistenceServiceProvider.class.getPackage().getName() + ".services" ;
+	private final static String SERVICES_ROOT_PACKAGE = PersistenceServiceProvider.class.getPackage().getName() + ".service" ;
 	
 	/**
 	 * Returns a persistence service for the default persistence implementation
@@ -43,17 +43,17 @@ public class PersistenceServiceProvider {
 			
 			case PersistenceConfig.JPA :
 				pkg = SERVICES_ROOT_PACKAGE + ".jpa" ;
-				suffix = "JPA" ;
+				suffix = "Jpa" ;
 				break ;
 				
 			case PersistenceConfig.LPA :
 				pkg = SERVICES_ROOT_PACKAGE + ".lpa" ;
-				suffix = "LPA" ;
+				suffix = "Lpa" ;
 				break ;
 				
 			case PersistenceConfig.FAKE :
 				pkg = SERVICES_ROOT_PACKAGE + ".fake" ;
-				suffix = "FAKE" ;
+				suffix = "Fake" ;
 				break ;
 				
 			default :
