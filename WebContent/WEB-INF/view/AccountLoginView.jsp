@@ -1,5 +1,5 @@
 <%@ include file="/WEB-INF/header.jspf" %>
-<form class="form-horizontal">
+<form method="post" action="<c:url value="/account/login"/>" class="form-horizontal" >
 <fieldset>
 
 <!-- Form Name -->

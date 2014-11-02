@@ -10,10 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.emn.eventmanager.bean.Customer;
+import fr.emn.eventmanager.persistence.service.CustomerPersistence;
+import fr.emn.eventmanager.persistence.service.jpa.CustomerPersistenceJpa;
+
 @WebServlet("/account/*")
-public class AccountController extends HttpServlet {
+public class AccountRegisterController extends HttpServlet {
 	
-	public AccountController() {
+	public AccountRegisterController() {
 		super();
 	}
 	
@@ -39,7 +43,16 @@ public class AccountController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	System.out.println(request.getParameter("passwordRegister"));
+	String password = request.getParameter("PasswordID");
+	request.getParameter("firstNameID");
+	
+	CustomerPersistence customerPersistance = new CustomerPersistenceJpa();
+	
+	Customer customer = new Customer();
+	customer.setCustomerPassword(password);
+	customerPersistance.insert(customer);
+	
+	
 	}
 	
 }
