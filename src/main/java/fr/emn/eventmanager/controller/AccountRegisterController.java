@@ -14,7 +14,7 @@ import fr.emn.eventmanager.bean.Customer;
 import fr.emn.eventmanager.persistence.service.CustomerPersistence;
 import fr.emn.eventmanager.persistence.service.jpa.CustomerPersistenceJpa;
 
-@WebServlet("/account/register")
+@WebServlet("/register")
 public class AccountRegisterController extends HttpServlet {
 	
 	public AccountRegisterController() {
@@ -22,34 +22,30 @@ public class AccountRegisterController extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String route = request.getPathInfo();
-		if (route != null && route.equals("/login")) {
-			System.out.println("AccountController.doGet(): routing...");
-			ServletContext context = getServletContext();
-			RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/AccountLoginView.jsp");
-			rd.forward(request, response);
-		} 
-		else if (route != null && route.equals("/register")) {
-			System.out.println("AccountController.doGet(): routing...");
-			ServletContext context = getServletContext();
-			RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/AccountRegisterView.jsp");
-			rd.forward(request, response);
-		} 
-		
-		
-		else {
-			response.sendError(HttpServletResponse.SC_NOT_FOUND);
-		}
+		System.out.println("AccountRegisterController.doGet(): routing...");
+		ServletContext context = getServletContext();
+		RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/AccountRegisterView.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	String firstname = request.getParameter("FirstNameID");
+	String lastname = request.getParameter("NameID");
+	String email = request.getParameter("EmailID");
+	String company = request.getParameter("CompanyID");
 	String password = request.getParameter("PasswordID");
-	request.getParameter("firstNameID");
+	
 	
 	CustomerPersistence customerPersistance = new CustomerPersistenceJpa();
 	
 	Customer customer = new Customer();
+	customer.setCustomerFirstname(firstname);
+	customer.setCustomerLastname(lastname);
+	customer.setCustomerEmail(email);
+	customer.setCustomerCompany(company);
 	customer.setCustomerPassword(password);
+	customer.toString(); 								//test console
 	customerPersistance.insert(customer);
 	
 	

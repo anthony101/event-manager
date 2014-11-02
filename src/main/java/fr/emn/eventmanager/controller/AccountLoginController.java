@@ -18,7 +18,7 @@ import fr.emn.eventmanager.bean.Customer;
 import fr.emn.eventmanager.persistence.service.CustomerPersistence;
 import fr.emn.eventmanager.persistence.service.jpa.CustomerPersistenceJpa;
 
-@WebServlet("/account/login")
+@WebServlet("/login")
 public class AccountLoginController extends HttpServlet {
 
 	public AccountLoginController() {
@@ -28,7 +28,7 @@ public class AccountLoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("AccountController.doGet(): routing...");
+		System.out.println("AccountLoginController.doGet(): routing...");
 		ServletContext context = getServletContext();
 		RequestDispatcher rd = context
 				.getRequestDispatcher("/WEB-INF/view/AccountLoginView.jsp");
@@ -38,33 +38,39 @@ public class AccountLoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		String password = request.getParameter("PasswordID");
 		String email = request.getParameter("emailID");
 
 		CustomerPersistence customerPersistance = new CustomerPersistenceJpa();
-		
-		
-		Map<String, Object> criteria = new HashMap<String, Object>();
+
+
+		Map<String, Object> criteria = new HashMap<String, Object>(); //on recherche le customer par email
 		criteria.put("customerEmail", email);
 		List<Customer> users = customerPersistance.search(criteria);
-		//tester si liste vide = connexion impossible
 		
-		//code si connexion impossible
+		if (users.isEmpty()) //tester si liste vide = connexion impossible Customer non existant
+		{
 		ServletContext context = getServletContext();
 		request.setAttribute("connexionImpossible", true);
 		RequestDispatcher rd = context
 				.getRequestDispatcher("/WEB-INF/view/AccountLoginView.jsp");
 		rd.forward(request, response);
-		
-		if(users.get(0).getCustomerPassword().equals(password)){
+		}
+
+		if(users.get(0).getCustomerPassword().equals(password)){           //on check que le password soit bon
 			session.setAttribute("authentification", users.get(0));
 		}
 		else{
-			//connexion impossible
+			//connexion impossible car mauvais password 
+			ServletContext context = getServletContext();
+			request.setAttribute("connexionImpossible", true);
+			RequestDispatcher rd = context
+					.getRequestDispatcher("/WEB-INF/view/AccountLoginView.jsp");
+			rd.forward(request, response);
 		}
 
-		
+
 
 	}
 

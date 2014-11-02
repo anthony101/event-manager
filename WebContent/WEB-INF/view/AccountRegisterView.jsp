@@ -1,5 +1,5 @@
 <%@ include file="/WEB-INF/header.jspf" %>
-<form method="post" action="<c:url value="/account/register"/>" class="form-horizontal">
+<form method="post" action="<c:url value="/register"/>" class="form-horizontal">
 
 <fieldset>
 
@@ -8,9 +8,9 @@
 
 <!-- Text input-->
 <div class="control-group">
-  <label class="control-label" for="firstNameID">First Name</label>
+  <label class="control-label" for="FirstNameID">First Name</label>
   <div class="controls">
-    <input id="firstNameID" name="firstNameID" type="text" placeholder="" class="input-xlarge" required="">
+    <input id="FirstNameID" name="FirstNameID" type="text" placeholder="" class="input-xlarge" required="">
     
   </div>
 </div>
