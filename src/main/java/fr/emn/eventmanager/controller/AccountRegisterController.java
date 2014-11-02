@@ -14,7 +14,7 @@ import fr.emn.eventmanager.bean.Customer;
 import fr.emn.eventmanager.persistence.service.CustomerPersistence;
 import fr.emn.eventmanager.persistence.service.jpa.CustomerPersistenceJpa;
 
-@WebServlet("/account/*")
+@WebServlet("/account/register")
 public class AccountRegisterController extends HttpServlet {
 	
 	public AccountRegisterController() {
