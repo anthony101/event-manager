@@ -1,6 +1,8 @@
 package fr.emn.eventmanager.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -40,20 +42,24 @@ public class EventNewController extends HttpServlet {
 		String location = request.getParameter("LocationID");
 		String start = request.getParameter("StartID");
 		String end = request.getParameter("EndID");
-		
-		
-		
+
 		EventPersistence customerPersistance = new EventPersistenceJpa();
 		
 		Event event = new Event();
 		event.setEventName(name);
 		event.setEventLocation(location);
-		//event.setEventStartDatetime(start);   caster string en date ?
-		//event.setEventEndDatetime(end);		caster string en date ?
-		//event.setEventCreatorId(eventCreatorId);
-		
+		SimpleDateFormat formatter = new SimpleDateFormat("JJ/MM/AA HH:MM");
+		try {
+			event.setEventStartDatetime(formatter.parse(start));
+			event.setEventEndDatetime(formatter.parse(end));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		int creatorId = ((Customer) request.getAttribute("customer")).getCustomerId();
+		event.setEventCreatorId(Long.valueOf(creatorId));
+		//TODO:MB: comment previous line and uncomment following line : 
+		//event.setEventCreatorId(creatorId);
 		event.toString(); 								//test console
 		customerPersistance.insert(event);
-	
 	}
 }

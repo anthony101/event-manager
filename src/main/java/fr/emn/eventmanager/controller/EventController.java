@@ -43,30 +43,6 @@ public class EventController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("NameID");
-		String location = request.getParameter("LocationID");
-		String start = request.getParameter("StartID");
-		String end = request.getParameter("EndID");
 		
-		
-		
-		EventPersistence customerPersistance = new EventPersistenceJpa();
-		
-		Event event = new Event();
-		event.setEventName(name);
-		event.setEventLocation(location);
-		SimpleDateFormat formatter = new SimpleDateFormat("JJ/MM/AA HH:MM");
-		try {
-			event.setEventStartDatetime(formatter.parse(start));
-			event.setEventEndDatetime(formatter.parse(end));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		int creatorId = ((Customer) request.getAttribute("customer")).getCustomerId();
-		event.setEventCreatorId(Long.valueOf(creatorId));
-		//TODO:MB: comment previous line and uncomment following line : 
-		//event.setEventCreatorId(creatorId);
-		event.toString(); 								//test console
-		customerPersistance.insert(event);
 	}
 }
