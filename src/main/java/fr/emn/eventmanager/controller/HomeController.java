@@ -24,43 +24,17 @@ public class HomeController extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
+		
 		HttpSession session = request.getSession();
-		Customer customer = (Customer) session.getAttribute("customer");
-		if (customer != null) {
-			List<Event> events = customer.getListOfEvent();
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			out.println("<html>");
-			out.println("<head> <title></title></head> ");
-			out.println("  ");
-			out.println("<body>");
-			out.println("<table>");
-			out.println("<th><td>Nom</td><td>Lieu</td><td>Début et fin</td></th>");
-			for (Event event : events) {
-				String location = event.getEventLocation();
-				String name = event.getEventName();
-				String start = event.getEventStartDatetime().toString();
-				String end = event.getEventEndDatetime().toString();
-				out.println("<tr><td>"+name+"</td><td>"+location+"</td><td>"+start+" - "+end+"</td></tr>");
-			}
-			out.println("</table>");
-			out.println("</body>");
-			out.println("</html>");
+		String home;
+		if (session.getAttribute("authentification")!=null) {
+			home = "/WEB-INF/view/HomeCustomerView.jsp";			
 		} else {
-			//this.getServletContext().getRequestDispatcher("/subscribe.html").forward(request, response);
-			response.sendRedirect("subscribe.html");
+			home = "/WEB-INF/view/HomeView.jsp";	
 		}
-		*/
-		
-		String route = request.getPathInfo();
-		
-			System.out.println("HomeController.doGet(): routing...");
-			ServletContext context = getServletContext();
-			RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/HomeView.jsp");
-			rd.forward(request, response);
-		 
-		
-	}
-	
+		System.out.println("HomeController.doGet(): routing...");
+		ServletContext context = getServletContext();
+		RequestDispatcher rd = context.getRequestDispatcher(home);
+		rd.forward(request, response);
+	 }
 }

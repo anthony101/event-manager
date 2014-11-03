@@ -40,7 +40,7 @@ public class AccountLoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String password = request.getParameter("PasswordID");
-		String email = request.getParameter("emailID");
+		String email = request.getParameter("EmailID");
 
 		CustomerPersistence customerPersistance = new CustomerPersistenceJpa();
 
@@ -52,19 +52,26 @@ public class AccountLoginController extends HttpServlet {
 		if (users.isEmpty()) //tester si liste vide = connexion impossible Customer non existant
 		{
 		ServletContext context = getServletContext();
-		request.setAttribute("connexionImpossible", true);
+		request.setAttribute("connexionImpossible", "Utilisateur non reconnu");
+		System.out.println("connexionImpossible utilisateur non connu");
 		RequestDispatcher rd = context
 				.getRequestDispatcher("/WEB-INF/view/AccountLoginView.jsp");
 		rd.forward(request, response);
 		}
 
-		if(users.get(0).getCustomerPassword().equals(password)){           //on check que le password soit bon
+		else if(users.get(0).getCustomerPassword().equals(password)){           //on check que le password soit bon
+			
 			session.setAttribute("authentification", users.get(0));
+			ServletContext context = getServletContext();
+			RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/HomeCustomerView.jsp");
+			rd.forward(request, response);
+			System.out.println("connexion reussie, session ouverte");
 		}
 		else{
 			//connexion impossible car mauvais password 
 			ServletContext context = getServletContext();
-			request.setAttribute("connexionImpossible", true);
+			request.setAttribute("connexionImpossible", "Mot de passe erroné");
+			System.out.println("mauvais mdp");
 			RequestDispatcher rd = context
 					.getRequestDispatcher("/WEB-INF/view/AccountLoginView.jsp");
 			rd.forward(request, response);

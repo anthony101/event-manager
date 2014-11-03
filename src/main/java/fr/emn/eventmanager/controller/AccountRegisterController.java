@@ -47,6 +47,9 @@ public class AccountRegisterController extends HttpServlet {
 	customer.setCustomerPassword(password);
 	customer.toString(); 								//test console
 	customerPersistance.insert(customer);
+	ServletContext context = getServletContext();
+	RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/AccountLoginView.jsp");
+	rd.forward(request, response);
 	
 	
 	}

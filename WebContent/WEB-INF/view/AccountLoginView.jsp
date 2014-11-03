@@ -5,20 +5,21 @@
 <!-- Form Name -->
 <legend>Login</legend>
 
+<p>${connexionImpossible}</p>
 <!-- Text input-->
 <div class="control-group">
-  <label class="control-label" for="mailLogin">E-mail adress</label>
+  <label class="control-label" for="EmailID">E-mail adress</label>
   <div class="controls">
-    <input id="mailLogin" name="mailLogin" type="text" placeholder="Enter your e-mail" class="input-xlarge" required="">
+    <input id="EmailID" name="EmailID" type="text" placeholder="Enter your e-mail" class="input-xlarge" required="">
     
   </div>
 </div>
 
 <!-- Password input-->
 <div class="control-group">
-  <label class="control-label" for="passwordRegister">Password </label>
+  <label class="control-label" for="PasswordID">Password </label>
   <div class="controls">
-    <input id="passwordRegister" name="passwordRegister" type="password" placeholder="Enter your password" class="input-xlarge" required="">
+    <input id="PasswordID" name="PasswordID" type="password" placeholder="Enter your password" class="input-xlarge" required="">
     
   </div>
 </div>
