@@ -27,7 +27,7 @@
 <div class="control-group">
   <label class="control-label" for="StartID">Start</label>
   <div class="controls">
-    <input id="StartID" name="StartID" type="text" placeholder="10-12-14" class="input-xlarge" required="">
+    <input id="StartID" name="StartID" type="text" placeholder="JJ/MM/AA HH:MM" class="input-xlarge" required="">
     
   </div>
 </div>
@@ -36,7 +36,7 @@
 <div class="control-group">
   <label class="control-label" for="EndID">End</label>
   <div class="controls">
-    <input id="EndID" name="EndID" type="text" placeholder="11-12-14" class="input-xlarge" required="">
+    <input id="EndID" name="EndID" type="text" placeholder="JJ/MM/AA HH:MM" class="input-xlarge" required="">
     <p class="help-block">help</p>
   </div>
 </div>
