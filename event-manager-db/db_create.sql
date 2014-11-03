@@ -1,6 +1,6 @@
-DROP TABLE app.event;
-DROP TABLE app.customer;
-DROP TABLE app.participant;
+--DROP TABLE app.event;
+--DROP TABLE app.customer;
+--DROP TABLE app.participant;
 
 CREATE TABLE app.customer (
     customer_id INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -17,7 +17,7 @@ CREATE TABLE app.event (
     event_location varchar(50) NOT NULL,
     event_start_datetime timestamp NOT NULL,
     event_end_datetime timestamp NOT NULL,
-    event_creator_id bigint NOT NULL
+    event_creator_id int NOT NULL
 );
 
 CREATE TABLE app.participant (
