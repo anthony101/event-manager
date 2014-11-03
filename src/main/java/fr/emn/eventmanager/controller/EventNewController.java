@@ -19,25 +19,20 @@ import fr.emn.eventmanager.persistence.service.EventPersistence;
 import fr.emn.eventmanager.persistence.service.jpa.CustomerPersistenceJpa;
 import fr.emn.eventmanager.persistence.service.jpa.EventPersistenceJpa;
 
-@WebServlet("/event/*")
-public class EventController extends HttpServlet {
+@WebServlet("/event/new")
+public class EventNewController extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
 
-	public EventController() {
+	public EventNewController() {
         super();
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String route = request.getPathInfo();
-		if (route != null && route.equals("/new")) {
-			System.out.println("EventController.doGet(): routing...");
-			ServletContext context = getServletContext();
-			RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/EventNewView.jsp");
-			rd.forward(request, response);
-		} else {
-			response.sendError(HttpServletResponse.SC_NOT_FOUND);
-		}
+		System.out.println("EventController.doGet(): routing...");
+		ServletContext context = getServletContext();
+		RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/EventNewView.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
