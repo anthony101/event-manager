@@ -11,14 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.eclipse.jdt.internal.compiler.apt.dispatch.RoundDispatcher;
+import javax.servlet.http.HttpSession;
 
 import fr.emn.eventmanager.bean.Customer;
 import fr.emn.eventmanager.bean.Event;
-import fr.emn.eventmanager.persistence.service.CustomerPersistence;
 import fr.emn.eventmanager.persistence.service.EventPersistence;
-import fr.emn.eventmanager.persistence.service.jpa.CustomerPersistenceJpa;
 import fr.emn.eventmanager.persistence.service.jpa.EventPersistenceJpa;
 
 @WebServlet("/event/new")
@@ -32,12 +29,21 @@ public class EventNewController extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("EventController.doGet(): routing...");
-		ServletContext context = getServletContext();
-		RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/EventNewView.jsp");
-		rd.forward(request, response);
+		
+		HttpSession session = request.getSession();
+		if (session.getAttribute("authentification") != null) {
+			ServletContext context = getServletContext();
+			RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/EventNewView.jsp");
+			rd.forward(request, response);
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("authentification") == null) {
+			response.sendRedirect("/login");
+		}
+		
 		String name = request.getParameter("NameID");
 		String location = request.getParameter("LocationID");
 		String start = request.getParameter("StartID");
@@ -48,20 +54,17 @@ public class EventNewController extends HttpServlet {
 		Event event = new Event();
 		event.setEventName(name);
 		event.setEventLocation(location);
-		SimpleDateFormat formatter = new SimpleDateFormat("JJ/MM/AA HH:MM");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/YY HH:MM");
 		try {
 			event.setEventStartDatetime(formatter.parse(start));
 			event.setEventEndDatetime(formatter.parse(end));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		//int creatorId = ((Customer) request.getAttribute("customer")).getCustomerId();
-		//event.setEventCreatorId(Long.valueOf(creatorId));
-		Customer customer = (Customer) request.getAttribute("customer");
+		
+		Customer customer = (Customer) session.getAttribute("authentification");
 		event.setCustomer(customer);
-		//TODO:MB: comment previous line and uncomment following line : 
-		//event.setEventCreatorId(creatorId);
-		event.toString(); 								//test console
+		event.toString(); //test console
 		customerPersistance.insert(event);
 	}
 }

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import fr.emn.eventmanager.bean.Customer;
 import fr.emn.eventmanager.bean.Event;
 
-@WebServlet("/home")
+@WebServlet("/")
 public class HomeController extends HttpServlet {
 	
 	public HomeController() {

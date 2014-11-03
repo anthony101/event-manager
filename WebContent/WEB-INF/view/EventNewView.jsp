@@ -1,5 +1,5 @@
 <%@ include file="/WEB-INF/header.jspf" %>
-<form method="post" action="<c:url value="/event"/>" class="form-horizontal">
+<form method="post" action="<c:url value="/event/new"/>" class="form-horizontal">
 <fieldset>
 
 <!-- Form Name -->
