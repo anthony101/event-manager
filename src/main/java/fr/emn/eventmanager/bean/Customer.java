@@ -36,6 +36,7 @@ public class Customer implements Serializable {
     // ENTITY PRIMARY KEY ( BASED ON A SINGLE FIELD )
     //----------------------------------------------------------------------
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="CUSTOMER_ID", nullable=false)
     private Long       customerId   ;
 

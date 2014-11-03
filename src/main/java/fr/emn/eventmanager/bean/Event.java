@@ -37,6 +37,7 @@ public class Event implements Serializable {
     // ENTITY PRIMARY KEY ( BASED ON A SINGLE FIELD )
     //----------------------------------------------------------------------
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="EVENT_ID", nullable=false, length=32)
     private String     eventId      ;
 
