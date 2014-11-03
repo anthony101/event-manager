@@ -66,5 +66,8 @@ public class EventNewController extends HttpServlet {
 		event.setCustomer(customer);
 		event.toString(); //test console
 		customerPersistance.insert(event);
+		
+	
+		response.sendRedirect("/event-manager/home");
 	}
 }

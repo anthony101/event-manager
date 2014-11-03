@@ -31,7 +31,9 @@ public class EventController extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
 		String route = request.getPathInfo();
+		
 		if (route != null && route.equals("/new")) {
 			System.out.println("EventController.doGet(): routing...");
 			ServletContext context = getServletContext();
@@ -39,6 +41,19 @@ public class EventController extends HttpServlet {
 			rd.forward(request, response);
 		} else {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}*/
+		
+		String id = request.getPathInfo().replaceFirst("/", "");
+		try {
+			int eventId = Integer.parseInt(id);
+			EventPersistence ep = new EventPersistenceJpa();
+			Event event = ep.load(eventId);
+			request.setAttribute("event", event);
+			ServletContext context = getServletContext();
+			RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/EventView.jsp");
+			rd.forward(request, response);
+		} catch (NumberFormatException e) {
+			
 		}
 	}
 
