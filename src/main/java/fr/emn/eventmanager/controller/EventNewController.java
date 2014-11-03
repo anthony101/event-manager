@@ -55,8 +55,10 @@ public class EventNewController extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		int creatorId = ((Customer) request.getAttribute("customer")).getCustomerId();
-		event.setEventCreatorId(Long.valueOf(creatorId));
+		//int creatorId = ((Customer) request.getAttribute("customer")).getCustomerId();
+		//event.setEventCreatorId(Long.valueOf(creatorId));
+		Customer customer = (Customer) request.getAttribute("customer");
+		event.setCustomer(customer);
 		//TODO:MB: comment previous line and uncomment following line : 
 		//event.setEventCreatorId(creatorId);
 		event.toString(); 								//test console
