@@ -37,7 +37,7 @@
   <label class="control-label" for="EndID">End</label>
   <div class="controls">
     <input id="EndID" name="EndID" type="text" placeholder="JJ/MM/AA HH:MM" class="input-xlarge" required="">
-    <p class="help-block">help</p>
+    
   </div>
 </div>
 
