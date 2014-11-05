@@ -30,27 +30,28 @@ public class AccountRegisterController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-	String firstname = request.getParameter("FirstNameID");
-	String lastname = request.getParameter("NameID");
-	String email = request.getParameter("EmailID");
-	String company = request.getParameter("CompanyID");
-	String password = request.getParameter("PasswordID");
+		String firstname = request.getParameter("FirstNameID");
+		String lastname = request.getParameter("NameID");
+		String email = request.getParameter("EmailID");
+		String company = request.getParameter("CompanyID");
+		String password = request.getParameter("PasswordID");
+		
+		
+		CustomerPersistence customerPersistance = new CustomerPersistenceJpa();
+		
+		Customer customer = new Customer();
+		customer.setCustomerFirstname(firstname);
+		customer.setCustomerLastname(lastname);
+		customer.setCustomerEmail(email);
+		customer.setCustomerCompany(company);
+		customer.setCustomerPassword(password);
+		customer.toString(); 								//test console
+		customerPersistance.insert(customer);
+		//ServletContext context = getServletContext();
+		//RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/AccountLoginView.jsp");
+		//rd.forward(request, response);
 	
-	
-	CustomerPersistence customerPersistance = new CustomerPersistenceJpa();
-	
-	Customer customer = new Customer();
-	customer.setCustomerFirstname(firstname);
-	customer.setCustomerLastname(lastname);
-	customer.setCustomerEmail(email);
-	customer.setCustomerCompany(company);
-	customer.setCustomerPassword(password);
-	customer.toString(); 								//test console
-	customerPersistance.insert(customer);
-	ServletContext context = getServletContext();
-	RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/AccountLoginView.jsp");
-	rd.forward(request, response);
-	
+		response.sendRedirect("/event-manager/login");
 	
 	}
 	

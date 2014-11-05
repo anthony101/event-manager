@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import fr.emn.eventmanager.bean.Customer;
 import fr.emn.eventmanager.bean.Event;
 
-@WebServlet(urlPatterns = { "/", "/home" })
+@WebServlet("/home")
 public class HomeController extends HttpServlet {
 	
 	public HomeController() {

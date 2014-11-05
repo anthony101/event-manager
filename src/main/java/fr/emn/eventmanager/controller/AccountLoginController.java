@@ -62,9 +62,10 @@ public class AccountLoginController extends HttpServlet {
 		else if(users.get(0).getCustomerPassword().equals(password)){           //on check que le password soit bon
 			
 			session.setAttribute("authentification", users.get(0));
-			ServletContext context = getServletContext();
-			RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/HomeCustomerView.jsp");
-			rd.forward(request, response);
+			//ServletContext context = getServletContext();
+			//RequestDispatcher rd = context.getRequestDispatcher("/WEB-INF/view/HomeCustomerView.jsp");
+			//rd.forward(request, response);
+			response.sendRedirect("/event-manager/home");
 			System.out.println("connexion reussie, session ouverte");
 		}
 		else{

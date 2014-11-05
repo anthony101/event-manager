@@ -1,10 +1,10 @@
 <%@ include file="/WEB-INF/header.jspf" %>
-<form method="post" action="<c:url value="/register"/>" class="form-horizontal">
+<form method="post" action="<c:url value="/event/subscribe/${event.eventId}" />" class="form-horizontal">
 
 <fieldset>
 
 <!-- Form Name -->
-<legend>Register</legend>
+<legend>Subscribe</legend>
 
 <!-- Text input-->
 <div class="control-group">
@@ -42,20 +42,11 @@
   </div>
 </div>
 
-<!-- Password input-->
-<div class="control-group">
-  <label class="control-label" for="PasswordID">Password</label>
-  <div class="controls">
-    <input id="PasswordID" name="PasswordID" type="password" placeholder="" class="input-xlarge" required="">
-    
-  </div>
-</div>
-
 <!-- Button -->
 <div class="control-group">
   <label class="control-label" for="ValidID"></label>
   <div class="controls">
-    <button id="ValidID" name="ValidID" class="btn btn-primary">Valid</button>
+    <button id="ValidID" name="ValidID" class="btn btn-primary">Subscribe</button>
   </div>
 </div>
 

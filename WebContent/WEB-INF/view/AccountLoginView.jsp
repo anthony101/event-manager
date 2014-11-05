@@ -10,7 +10,7 @@
 <div class="control-group">
   <label class="control-label" for="EmailID">E-mail adress</label>
   <div class="controls">
-    <input id="EmailID" name="EmailID" type="text" placeholder="Enter your e-mail" class="input-xlarge" required="">
+    <input id="EmailID" name="EmailID" type="email" placeholder="Enter your e-mail" class="input-xlarge" required="">
     
   </div>
 </div>
